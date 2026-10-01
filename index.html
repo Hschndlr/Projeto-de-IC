@@ -6,14 +6,7 @@
     <title>A Cidade Sob a Cidade | Museu Digital e Atlas Socioespacial de Pojuca</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        .hero-bg {
-            background-image: linear-gradient(to bottom, rgba(20, 15, 10, 0.85), rgba(20, 15, 10, 0.95)),
-                              url('https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-stone-100 text-stone-800 font-sans antialiased flex flex-col min-h-screen">
 
@@ -40,7 +33,7 @@
     </header>
 
     <main class="flex-grow">
-        
+
         <div id="home-page" class="page-view">
             <section class="hero-bg text-stone-100 py-20 px-4">
                 <div class="max-w-4xl mx-auto text-center space-y-6">
@@ -53,11 +46,6 @@
                     <p class="text-stone-300 text-base md:text-lg max-w-2xl mx-auto">
                         Um resgate da memória territorial de Pojuca: da economia açucareira dos séculos XVII-XIX e a Estrada de Ferro Bahia ao São Francisco às rugosidades urbanas contemporâneas.
                     </p>
-                    <div class="flex justify-center gap-4 pt-4">
-                        <button onclick="trocarPagina('acervo-page')" class="px-6 py-3 bg-amber-600 hover:bg-amber-700 text-stone-900 font-bold rounded-lg transition shadow-lg flex items-center gap-2">
-                            <i data-lucide="archive" class="w-5 h-5"></i> Abrir Arquivo Completo
-                        </button>
-                    </div>
                 </div>
             </section>
 
@@ -73,17 +61,23 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-white p-5 rounded-lg border border-stone-300 shadow-sm">
+
+                    <div class="bg-white p-5 rounded-lg border border-stone-300 shadow-sm cursor-pointer hover:shadow-lg transition"
+                         onclick="abrirModal('Cartografia (1888)', 'Planta da Vila de Catu com o mapeamento dos engenhos até 1888', 'Levantamento de Nemézio Quintino de Meneses que localiza o Engenho Pojuca original.')">
                         <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-1 rounded">Cartografia (1888)</span>
-                        <h4 class="font-serif font-bold text-lg mt-2">Planta da Vila de Catu</h4>
+                        <h4 class="font-serif font-bold text-lg mt-2">Planta da Vila de Catu com o mapeamento dos engenhos até 1888</h4>
                         <p class="text-stone-600 text-sm mt-1">Levantamento de Nemézio Quintino de Meneses que localiza o Engenho Pojuca original.</p>
                     </div>
-                    <div class="bg-white p-5 rounded-lg border border-stone-300 shadow-sm">
+
+                    <div class="bg-white p-5 rounded-lg border border-stone-300 shadow-sm cursor-pointer hover:shadow-lg transition"
+                         onclick="abrirModal('Ferrovia (1880)', 'Engenho Central & Tramway', 'Ramal ferroviário interno de 6km para escoamento de cana-de-açúcar dos engenhos limítrofes.')">
                         <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-1 rounded">Ferrovia (1880)</span>
                         <h4 class="font-serif font-bold text-lg mt-2">Engenho Central & Tramway</h4>
                         <p class="text-stone-600 text-sm mt-1">Ramal ferroviário interno de 6km para escoamento de cana-de-açúcar dos engenhos limítrofes.</p>
                     </div>
-                    <div class="bg-white p-5 rounded-lg border border-stone-300 shadow-sm">
+
+                    <div class="bg-white p-5 rounded-lg border border-stone-300 shadow-sm cursor-pointer hover:shadow-lg transition"
+                         onclick="abrirModal('História Oral', 'O Arraial da Passagem', 'A travessia dos tropeiros no Rio Pojuca e a formação do primeiro núcleo comercial.')">
                         <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-1 rounded">História Oral</span>
                         <h4 class="font-serif font-bold text-lg mt-2">O Arraial da Passagem</h4>
                         <p class="text-stone-600 text-sm mt-1">A travessia dos tropeiros no Rio Pojuca e a formação do primeiro núcleo comercial.</p>
@@ -91,9 +85,7 @@
                 </div>
             </section>
         </div>
-
         <div id="acervo-page" class="page-view hidden max-w-7xl mx-auto px-4 py-10">
-            
             <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-stone-300 pb-6 mb-8 gap-4">
                 <div>
                     <div class="flex items-center gap-2 text-amber-700 font-semibold text-sm mb-1">
@@ -106,7 +98,6 @@
                     <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar à Página Inicial
                 </button>
             </div>
-
             <div class="bg-stone-200/80 p-5 rounded-xl border border-stone-300 mb-8 space-y-4">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div class="relative">
@@ -129,123 +120,42 @@
                     </select>
                 </div>
             </div>
-
             <div id="acervoGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                
                 <div class="item-acervo bg-white rounded-xl border border-stone-300 shadow-sm overflow-hidden flex flex-col" data-tipo="mapa" data-seculo="sec19">
-                    <img src="cart543428.jpg" class="h-48 w-full object-cover">
+                    <img src="cart543428.jpg" alt="Carta Histórica" class="h-48 w-full object-cover">
                     <div class="p-5 flex-grow flex flex-col justify-between space-y-3">
                         <div>
                             <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Cartografia (1888)</span>
-                            <h3 class="font-serif font-bold text-lg text-stone-900 mt-2">Planta Topographica da Vila de Sant’Ana do Catu</h3>
-                            <p class="text-stone-600 text-sm mt-1 line-clamp-3">Mapeamento de Nemézio Quintino de Meneses. Utilizado na sobreposição digital SIG para localizar a sede do antigo Engenho Pojuca (Caboclo).</p>
+                            <h3 class="font-serif font-bold text-lg mt-2 text-stone-900">Planta da Vila de Catu</h3>
+                            <p class="text-stone-600 text-sm mt-1">Levantamento original da região e engenhos limítrofes.</p>
                         </div>
-                        <button onclick="abrirModal('Planta Topographica da Vila de Sant’Ana do Catu (1888)', 'Mapeamento cartográfico oitocentista essencial para identificar os fixos e rugosidades históricas de Pojuca. Distante 345m da antiga sede da Fazenda Leite.', 'Biblioteca Nacional / Geoprocessamento QGIS')" class="w-full py-2 bg-stone-900 hover:bg-stone-800 text-amber-100 text-sm font-medium rounded-lg transition">
-                            Abrir Ficha Técnica
-                        </button>
                     </div>
                 </div>
-
-                <div class="item-acervo bg-white rounded-xl border border-stone-300 shadow-sm overflow-hidden flex flex-col" data-tipo="ferrovia" data-seculo="sec19">
-                    <img src="WhatsApp Image 2026-09-30 at 12.06.35.jpeg" class="h-48 w-full object-cover">
-                    <div class="p-5 flex-grow flex flex-col justify-between space-y-3">
-                        <div>
-                            <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Ferrovia & Indústria</span>
-                            <h3 class="font-serif font-bold text-lg text-stone-900 mt-2">Ramal e Trilhos do Engenho Central (1880)</h3>
-                            <p class="text-stone-600 text-sm mt-1 line-clamp-3">Inaugurado pelo Barão da Pojuca com máquina a vapor de 85 CV. Trilhos do tramway e pontilhão sobre o Riacho Caboclo.</p>
-                        </div>
-                        <button onclick="abrirModal('Engenho Central & Trilhos do Tramway', 'Inaugurado em 18 de novembro de 1880 ao lado da Estação de São Thiago. Concentrava a moagem de 250 toneladas diárias com ramal interno de 6km.', 'Decreto Imperial nº 8.395 (1882)')" class="w-full py-2 bg-stone-900 hover:bg-stone-800 text-amber-100 text-sm font-medium rounded-lg transition">
-                            Abrir Ficha Técnica
-                        </button>
-                    </div>
-                </div>
-
-                <div class="item-acervo bg-white rounded-xl border border-stone-300 shadow-sm overflow-hidden flex flex-col" data-tipo="documento" data-seculo="sec18">
-                    <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=600&q=80" class="h-48 w-full object-cover">
-                    <div class="p-5 flex-grow flex flex-col justify-between space-y-3">
-                        <div>
-                            <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Documento Primário (1757)</span>
-                            <h3 class="font-serif font-bold text-lg text-stone-900 mt-2">Carta da Freguesia de S. Sebastião das Cabaceiras</h3>
-                            <p class="text-stone-600 text-sm mt-1 line-clamp-3">Relato do sacerdote Filipe Barbosa da Cunha à corte lusitana listando o Engenho da Pojuca entre os oito engenhos ativos da região.</p>
-                        </div>
-                        <button onclick="abrirModal('Carta de Filipe Barbosa da Cunha (1757)', 'Documento oficial onde é citada a existência do Engenho da Pojuca e da Capela de Nossa Senhora das Mercês.', 'Anais da Biblioteca Nacional (1909)')" class="w-full py-2 bg-stone-900 hover:bg-stone-800 text-amber-100 text-sm font-medium rounded-lg transition">
-                            Abrir Ficha Técnica
-                        </button>
-                    </div>
-                </div>
-
             </div>
         </div>
     </main>
-
-    <div id="fileModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-xl max-w-lg w-full p-6 space-y-4 relative shadow-2xl border border-stone-300">
-            <button onclick="fecharModal()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-800">
-                <i data-lucide="x" class="w-6 h-6"></i>
-            </button>
-            <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-1 rounded">Ficha Técnica do Documento</span>
-            <h3 id="modalTitle" class="font-serif font-bold text-xl text-stone-900"></h3>
-            <p id="modalDesc" class="text-stone-600 text-sm leading-relaxed"></p>
-            <div class="border-t border-stone-200 pt-3 text-xs text-stone-500">
-                <strong>Fonte / Referência:</strong> <span id="modalFonte"></span>
+    <div id="modalAcervo" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4" onclick="fecharModal(event)">
+        <div class="bg-white w-full max-w-2xl rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+            <div class="bg-stone-900 px-6 py-5 flex justify-between items-start">
+                <div>
+                    <span id="modalCategoria" class="text-xs font-bold text-amber-300"></span>
+                    <h2 id="modalTitulo" class="font-serif text-2xl font-bold text-white mt-1"></h2>
+                </div>
+                <button onclick="fecharModal()" class="text-stone-300 hover:text-white text-2xl" aria-label="Fechar">&times;</button>
             </div>
-            <button onclick="fecharModal()" class="w-full py-2 bg-stone-800 text-white rounded-lg font-medium text-sm">Fechar Ficha</button>
+            <div class="p-6">
+                <p id="modalDescricao" class="text-stone-600 leading-relaxed">
+                </p>
+            </div>
+            <div class="px-6 py-4 bg-stone-100 flex justify-end">
+                <button onclick="fecharModal()" class="px-5 py-2 bg-stone-800 hover:bg-stone-700 text-white rounded-lg transition">Fechar</button>
+            </div>
         </div>
     </div>
 
-    <footer class="bg-stone-900 text-stone-400 py-8 border-t border-stone-800 text-center text-sm">
-        <p>Museu Virtual de Pojuca.</p>
-        <p class="text-xs text-stone-500 mt-1">A Cidade Sob a Cidade — Baseado na dissertação de Heitor Schindler Silva .</p>
-    </footer>
-
+    <script src="script.js"></script>
     <script>
         lucide.createIcons();
-
-        function trocarPagina(paginaId) {
-            document.querySelectorAll('.page-view').forEach(page => page.classList.add('hidden'));
-            const pagina = document.getElementById(paginaId);
-            if (pagina) {
-                pagina.classList.remove('hidden');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-        function scrollToSection(sectionId) {
-            const el = document.getElementById(sectionId);
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }
-        function filtrarAcervo() {
-            const busca = document.getElementById('searchInput').value.toLowerCase();
-            const tipo = document.getElementById('tipoFilter').value;
-            const seculo = document.getElementById('seculoFilter').value;
-            const cards = document.querySelectorAll('.item-acervo');
-
-            cards.forEach(card => {
-                const texto = card.innerText.toLowerCase();
-                const cardTipo = card.getAttribute('data-tipo');
-                const cardSeculo = card.getAttribute('data-seculo');
-
-                const matchBusca = texto.includes(busca);
-                const matchTipo = (tipo === 'todos' || cardTipo === tipo);
-                const matchSeculo = (seculo === 'todos' || cardSeculo === seculo);
-
-                if (matchBusca && matchTipo && matchSeculo) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-        }
-
-        function abrirModal(titulo, descricao, fonte) {
-            document.getElementById('modalTitle').innerText = titulo;
-            document.getElementById('modalDesc').innerText = descricao;
-            document.getElementById('modalFonte').innerText = fonte;
-            document.getElementById('fileModal').classList.remove('hidden');
-        }
-
-        function fecharModal() {
-            document.getElementById('fileModal').classList.add('hidden');
-        }
     </script>
 </body>
 </html>
