@@ -1,15 +1,41 @@
 <!DOCTYPE html>
+<!--
+    A Cidade Sob a Cidade — Museu Digital e Atlas Socioespacial de Pojuca
+
+    Estrutura da página:
+      1. Cabeçalho (navegação)
+      2. Conteúdo principal (<main>)
+         2.1 Página inicial  (#home-page)
+             - Hero
+             - Destaques do Acervo (cards que abrem o modal)
+         2.2 Página do acervo (#acervo-page)
+             - Cabeçalho do acervo
+             - Filtros (busca, tipo, século)
+             - Grade de itens (#acervoGrid)
+      3. Modal do acervo (#modalAcervo)
+      4. Scripts
+
+    Lógica em script.js · estilos extras em style.css · layout com Tailwind (CDN).
+-->
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Cidade Sob a Cidade | Museu Digital e Atlas Socioespacial de Pojuca</title>
+
+    <!-- Tailwind CSS: classes utilitárias de layout e cores -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide: ícones usados via <i data-lucide="..."> -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Estilos próprios (ex.: .hero-bg) -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-stone-100 text-stone-800 font-sans antialiased flex flex-col min-h-screen">
 
+    <!-- =====================================================================
+         1. CABEÇALHO
+         Logo + menu. Os botões chamam trocarPagina() (script.js).
+         ===================================================================== -->
     <header class="sticky top-0 z-40 bg-stone-900 text-stone-200 border-b border-stone-700 shadow-md">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             <button onclick="trocarPagina('home-page')" class="flex items-center gap-3 text-left">
@@ -19,7 +45,8 @@
                     <p class="text-xs text-stone-400">Memória Socioespacial & Patrimônio de Pojuca</p>
                 </div>
             </button>
-            
+
+            <!-- Menu principal (visível a partir de telas md) -->
             <nav class="hidden md:flex gap-6 text-sm font-medium">
                 <button onclick="trocarPagina('home-page')" class="hover:text-amber-400 transition">Início</button>
                 <button onclick="trocarPagina('acervo-page')" class="hover:text-amber-400 transition text-amber-400 font-semibold flex items-center gap-1">
@@ -32,9 +59,18 @@
         </div>
     </header>
 
+    <!-- =====================================================================
+         2. CONTEÚDO PRINCIPAL
+         Cada .page-view é uma "página"; trocarPagina() mostra uma por vez.
+         ===================================================================== -->
     <main class="flex-grow">
 
+        <!-- ---------------------------------------------------------------
+             2.1 PÁGINA INICIAL
+             --------------------------------------------------------------- -->
         <div id="home-page" class="page-view">
+
+            <!-- Hero: apresentação da pesquisa -->
             <section class="hero-bg text-stone-100 py-20 px-4">
                 <div class="max-w-4xl mx-auto text-center space-y-6">
                     <span class="inline-block px-3 py-1 bg-amber-900/80 text-amber-200 text-xs font-semibold rounded-full border border-amber-600/50">
@@ -49,6 +85,11 @@
                 </div>
             </section>
 
+            <!-- Destaques do Acervo
+                 Cada card chama abrirModal(categoria, titulo, descricao).
+                 ATENÇÃO: o texto do modal vem desses argumentos do onclick,
+                 e o texto visível do card está repetido logo abaixo.
+                 Ao editar um card, altere os dois lugares. -->
             <section id="destaques" class="max-w-7xl mx-auto px-4 py-12">
                 <div class="flex justify-between items-end mb-8">
                     <div>
@@ -62,6 +103,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
+                    <!-- Card 1: Cartografia (1888) -->
                     <div class="bg-white p-5 rounded-lg border border-stone-300 shadow-sm cursor-pointer hover:shadow-lg transition"
                          onclick="abrirModal('Cartografia (1888)', 'Planta da Vila de Catu com o mapeamento dos engenhos até 1888', 'Levantamento de Nemézio Quintino de Meneses que localiza o Engenho Pojuca original.')">
                         <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-1 rounded">Cartografia (1888)</span>
@@ -69,6 +111,7 @@
                         <p class="text-stone-600 text-sm mt-1">Levantamento de Nemézio Quintino de Meneses que localiza o Engenho Pojuca original.</p>
                     </div>
 
+                    <!-- Card 2: Ferrovia (1880) -->
                     <div class="bg-white p-5 rounded-lg border border-stone-300 shadow-sm cursor-pointer hover:shadow-lg transition"
                          onclick="abrirModal('Ferrovia (1880)', 'Engenho Central & Tramway', 'Ramal ferroviário interno de 6km para escoamento de cana-de-açúcar dos engenhos limítrofes.')">
                         <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-1 rounded">Ferrovia (1880)</span>
@@ -76,6 +119,7 @@
                         <p class="text-stone-600 text-sm mt-1">Ramal ferroviário interno de 6km para escoamento de cana-de-açúcar dos engenhos limítrofes.</p>
                     </div>
 
+                    <!-- Card 3: História Oral -->
                     <div class="bg-white p-5 rounded-lg border border-stone-300 shadow-sm cursor-pointer hover:shadow-lg transition"
                          onclick="abrirModal('História Oral', 'O Arraial da Passagem', 'A travessia dos tropeiros no Rio Pojuca e a formação do primeiro núcleo comercial.')">
                         <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-1 rounded">História Oral</span>
@@ -85,7 +129,14 @@
                 </div>
             </section>
         </div>
+        <!-- /home-page -->
+
+        <!-- ---------------------------------------------------------------
+             2.2 PÁGINA DO ACERVO (começa oculta)
+             --------------------------------------------------------------- -->
         <div id="acervo-page" class="page-view hidden max-w-7xl mx-auto px-4 py-10">
+
+            <!-- Cabeçalho do acervo + botão de voltar -->
             <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-stone-300 pb-6 mb-8 gap-4">
                 <div>
                     <div class="flex items-center gap-2 text-amber-700 font-semibold text-sm mb-1">
@@ -98,6 +149,9 @@
                     <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar à Página Inicial
                 </button>
             </div>
+
+            <!-- Filtros: busca por texto, tipo de documento e século.
+                 Chamam filtrarAcervo() (ainda não definida em script.js). -->
             <div class="bg-stone-200/80 p-5 rounded-xl border border-stone-300 mb-8 space-y-4">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div class="relative">
@@ -120,7 +174,13 @@
                     </select>
                 </div>
             </div>
+
+            <!-- Grade de itens do acervo.
+                 Cada .item-acervo usa data-tipo e data-seculo, com os mesmos
+                 valores das <option> dos filtros acima. -->
             <div id="acervoGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Item: Planta da Vila de Catu (mapa, séc. XIX) -->
                 <div class="item-acervo bg-white rounded-xl border border-stone-300 shadow-sm overflow-hidden flex flex-col" data-tipo="mapa" data-seculo="sec19">
                     <img src="cart543428.jpg" alt="Carta Histórica" class="h-48 w-full object-cover">
                     <div class="p-5 flex-grow flex flex-col justify-between space-y-3">
@@ -133,9 +193,20 @@
                 </div>
             </div>
         </div>
+        <!-- /acervo-page -->
     </main>
+
+    <!-- =====================================================================
+         3. MODAL DO ACERVO (começa oculto)
+         Os campos #modalCategoria, #modalTitulo e #modalDescricao ficam
+         vazios aqui e são preenchidos por abrirModal() (script.js).
+         Clicar no fundo escuro, no "×" ou em "Fechar" chama fecharModal().
+         ===================================================================== -->
     <div id="modalAcervo" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4" onclick="fecharModal(event)">
+        <!-- Caixa branca: stopPropagation evita fechar ao clicar dentro dela -->
         <div class="bg-white w-full max-w-2xl rounded-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+
+            <!-- Cabeçalho do modal: categoria + título + botão fechar -->
             <div class="bg-stone-900 px-6 py-5 flex justify-between items-start">
                 <div>
                     <span id="modalCategoria" class="text-xs font-bold text-amber-300"></span>
@@ -143,18 +214,27 @@
                 </div>
                 <button onclick="fecharModal()" class="text-stone-300 hover:text-white text-2xl" aria-label="Fechar">&times;</button>
             </div>
+
+            <!-- Corpo do modal: descrição -->
             <div class="p-6">
                 <p id="modalDescricao" class="text-stone-600 leading-relaxed">
                 </p>
             </div>
+
+            <!-- Rodapé do modal -->
             <div class="px-6 py-4 bg-stone-100 flex justify-end">
                 <button onclick="fecharModal()" class="px-5 py-2 bg-stone-800 hover:bg-stone-700 text-white rounded-lg transition">Fechar</button>
             </div>
         </div>
     </div>
+    <!-- /modalAcervo -->
 
+    <!-- =====================================================================
+         4. SCRIPTS
+         ===================================================================== -->
     <script src="script.js"></script>
     <script>
+        // Troca os <i data-lucide="..."> pelos ícones SVG do Lucide
         lucide.createIcons();
     </script>
 </body>
