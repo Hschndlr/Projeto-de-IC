@@ -26,7 +26,7 @@
                     <i data-lucide="archive" class="w-4 h-4"></i> Acervo & Arquivos
                 </button>
                 <button onclick="trocarPagina('home-page'); setTimeout(() => scrollToSection('linha-do-tempo'), 100)" class="hover:text-amber-400 transition">Linha do Tempo</button>
-                <button onclick="trocarPagina('home-page'); setTimeout(() => scrollToSection('produtos'), 100)" class="hover:text-amber-400 transition">Produtos Pedagógicos</button>
+                <button onclick="trocarPagina('produtos-page')" class="hover:text-amber-400 transition">Produtos Pedagógicos</button>
                 <button onclick="trocarPagina('home-page'); setTimeout(() => scrollToSection('colabore'), 100)" class="hover:text-amber-400 transition">Colabore</button>
             </nav>
         </div>
@@ -128,6 +128,136 @@
                             <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Cartografia (1888)</span>
                             <h3 class="font-serif font-bold text-lg mt-2 text-stone-900">Planta da Vila de Catu</h3>
                             <p class="text-stone-600 text-sm mt-1">Levantamento original da região e engenhos limítrofes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="produtos-page" class="page-view hidden max-w-7xl mx-auto px-4 py-10">
+            <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-stone-300 pb-6 mb-8 gap-4">
+                <div>
+                    <div class="flex items-center gap-2 text-amber-700 font-semibold text-sm mb-1">
+                        <i data-lucide="book-open" class="w-4 h-4"></i> Materiais para Sala de Aula
+                    </div>
+                    <h2 class="font-serif text-3xl font-bold text-stone-900">Produtos Pedagógicos</h2>
+                    <p class="text-stone-600 text-sm mt-1">Artigos, documentos e pesquisas em PDF sobre a formação de Pojuca, os engenhos e a ferrovia.</p>
+                </div>
+                <button onclick="trocarPagina('home-page')" class="px-4 py-2 bg-stone-800 hover:bg-stone-700 text-stone-100 text-sm font-semibold rounded-lg flex items-center gap-2 self-start md:self-auto transition">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar à Página Inicial
+                </button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl border border-stone-300 shadow-sm overflow-hidden flex flex-col hover:shadow-lg transition">
+                    <img src="produtos/historico-pojuca-ibge-capa.jpg" alt="Capa do histórico de Pojuca publicado pelo IBGE" class="h-64 w-full object-cover object-top border-b border-stone-200" loading="lazy">
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Documento Oficial</span>
+                            <h3 class="font-serif font-bold text-lg mt-2 text-stone-900">Histórico de Pojuca</h3>
+                            <p class="text-xs text-stone-500">IBGE · Biblioteca</p>
+                            <p class="text-stone-600 text-sm mt-2">Da colonização entre os rios Joanes, Jacuípe e Pojuca à primeira povoação em 1684, com a criação do distrito em 1892 e a emancipação de Santana do Catu em 1913.</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="produtos/historico-pojuca-ibge.pdf" target="_blank" rel="noopener" class="flex-1 px-3 py-2 bg-stone-800 hover:bg-stone-700 text-stone-100 text-sm font-semibold rounded-lg flex items-center justify-center gap-2 transition">
+                                <i data-lucide="eye" class="w-4 h-4"></i> Ler
+                            </a>
+                            <a href="produtos/historico-pojuca-ibge.pdf" download class="flex-1 px-3 py-2 border border-stone-300 hover:bg-stone-100 text-stone-800 text-sm font-semibold rounded-lg flex items-center justify-center gap-2 transition">
+                                <i data-lucide="download" class="w-4 h-4"></i> Baixar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl border border-stone-300 shadow-sm overflow-hidden flex flex-col hover:shadow-lg transition">
+                    <img src="produtos/engenhos-territorio-catuense-capa.jpg" alt="Primeira página do artigo sobre os engenhos do território catuense" class="h-64 w-full object-cover object-top border-b border-stone-200" loading="lazy">
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Artigo Científico</span>
+                            <h3 class="font-serif font-bold text-lg mt-2 text-stone-900">Desde os Antigos Engenhos de Fabricar Açúcar</h3>
+                            <p class="text-xs text-stone-500">Arnaut, Santos & Menezes · Revista Brasileira de Geografia, 2021</p>
+                            <p class="text-stone-600 text-sm mt-2">Usa cartografia histórica e SIG para mapear fazendas e engenhos de Santana do Catu, apontando o Engenho Pojuca como a propriedade mais antiga da região.</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="produtos/engenhos-territorio-catuense.pdf" target="_blank" rel="noopener" class="flex-1 px-3 py-2 bg-stone-800 hover:bg-stone-700 text-stone-100 text-sm font-semibold rounded-lg flex items-center justify-center gap-2 transition">
+                                <i data-lucide="eye" class="w-4 h-4"></i> Ler
+                            </a>
+                            <a href="produtos/engenhos-territorio-catuense.pdf" download class="flex-1 px-3 py-2 border border-stone-300 hover:bg-stone-100 text-stone-800 text-sm font-semibold rounded-lg flex items-center justify-center gap-2 transition">
+                                <i data-lucide="download" class="w-4 h-4"></i> Baixar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl border border-stone-300 shadow-sm overflow-hidden flex flex-col hover:shadow-lg transition">
+                    <img src="produtos/rugosidades-milton-santos-capa.jpg" alt="Primeira página do artigo sobre o conceito de rugosidades" class="h-64 w-full object-cover object-top border-b border-stone-200" loading="lazy">
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Artigo Científico</span>
+                            <h3 class="font-serif font-bold text-lg mt-2 text-stone-900">O Conceito de Rugosidades de Milton Santos</h3>
+                            <p class="text-xs text-stone-500">Sabino & Simões · Revista de Arqueologia Pública (Unicamp), 2013</p>
+                            <p class="text-stone-600 text-sm mt-2">Explica as rugosidades: marcas de tempos passados que permanecem no espaço e ganham novas funções no presente. É a base teórica para ler a paisagem de Pojuca.</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="produtos/rugosidades-milton-santos.pdf" target="_blank" rel="noopener" class="flex-1 px-3 py-2 bg-stone-800 hover:bg-stone-700 text-stone-100 text-sm font-semibold rounded-lg flex items-center justify-center gap-2 transition">
+                                <i data-lucide="eye" class="w-4 h-4"></i> Ler
+                            </a>
+                            <a href="produtos/rugosidades-milton-santos.pdf" download class="flex-1 px-3 py-2 border border-stone-300 hover:bg-stone-100 text-stone-800 text-sm font-semibold rounded-lg flex items-center justify-center gap-2 transition">
+                                <i data-lucide="download" class="w-4 h-4"></i> Baixar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl border border-stone-300 shadow-sm overflow-hidden flex flex-col hover:shadow-lg transition">
+                    <img src="produtos/ferrovia-alagoinhas-1863-1910-capa.jpg" alt="Primeira página do artigo sobre o impacto da ferrovia em Alagoinhas" class="h-64 w-full object-cover object-top border-b border-stone-200" loading="lazy">
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Anais de Evento</span>
+                            <h3 class="font-serif font-bold text-lg mt-2 text-stone-900">A Ferrovia em Alagoinhas (1863–1910)</h3>
+                            <p class="text-xs text-stone-500">Fabiana Machado da Silva · ANPUH</p>
+                            <p class="text-stone-600 text-sm mt-2">Analisa as transformações sociais, econômicas e urbanas causadas pela chegada da Estrada de Ferro Bahia ao São Francisco, a mesma linha que passava por Pojuca.</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="produtos/ferrovia-alagoinhas-1863-1910.pdf" target="_blank" rel="noopener" class="flex-1 px-3 py-2 bg-stone-800 hover:bg-stone-700 text-stone-100 text-sm font-semibold rounded-lg flex items-center justify-center gap-2 transition">
+                                <i data-lucide="eye" class="w-4 h-4"></i> Ler
+                            </a>
+                            <a href="produtos/ferrovia-alagoinhas-1863-1910.pdf" download class="flex-1 px-3 py-2 border border-stone-300 hover:bg-stone-100 text-stone-800 text-sm font-semibold rounded-lg flex items-center justify-center gap-2 transition">
+                                <i data-lucide="download" class="w-4 h-4"></i> Baixar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl border border-stone-300 shadow-sm overflow-hidden flex flex-col hover:shadow-lg transition">
+                    <img src="produtos/alagoinhas-era-das-ferrovias-capa.jpg" alt="Primeira página do artigo Alagoinhas nas trilhas da Era das Ferrovias" class="h-64 w-full object-cover object-top border-b border-stone-200" loading="lazy">
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Anais de Evento</span>
+                            <h3 class="font-serif font-bold text-lg mt-2 text-stone-900">Alagoinhas nas Trilhas da “Era das Ferrovias”</h3>
+                            <p class="text-xs text-stone-500">José Jorge Andrade Damasceno (UNEB) · ANPUH, 2015</p>
+                            <p class="text-stone-600 text-sm mt-2">Mostra como os capitais do açúcar e o fim do tráfico de escravos impulsionaram a construção da ferrovia baiana entre 1856 e 1896.</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="produtos/alagoinhas-era-das-ferrovias.pdf" target="_blank" rel="noopener" class="flex-1 px-3 py-2 bg-stone-800 hover:bg-stone-700 text-stone-100 text-sm font-semibold rounded-lg flex items-center justify-center gap-2 transition">
+                                <i data-lucide="eye" class="w-4 h-4"></i> Ler
+                            </a>
+                            <a href="produtos/alagoinhas-era-das-ferrovias.pdf" download class="flex-1 px-3 py-2 border border-stone-300 hover:bg-stone-100 text-stone-800 text-sm font-semibold rounded-lg flex items-center justify-center gap-2 transition">
+                                <i data-lucide="download" class="w-4 h-4"></i> Baixar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl border border-stone-300 shadow-sm overflow-hidden flex flex-col hover:shadow-lg transition">
+                    <img src="produtos/ferrovias-federais-bahia-1911-1935-capa.jpg" alt="Primeira página do artigo sobre a administração francesa das ferrovias na Bahia" class="h-64 w-full object-cover object-top border-b border-stone-200" loading="lazy">
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                        <div>
+                            <span class="text-xs font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Artigo Científico</span>
+                            <h3 class="font-serif font-bold text-lg mt-2 text-stone-900">No Tempo da Chemins de Fer</h3>
+                            <p class="text-xs text-stone-500">Aloísio Santos da Cunha · Saeculum (UFPB), 2013</p>
+                            <p class="text-stone-600 text-sm mt-2">A administração francesa das ferrovias federais na Bahia entre 1911 e 1935, período em que Pojuca conquistou sua emancipação.</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <a href="produtos/ferrovias-federais-bahia-1911-1935.pdf" target="_blank" rel="noopener" class="flex-1 px-3 py-2 bg-stone-800 hover:bg-stone-700 text-stone-100 text-sm font-semibold rounded-lg flex items-center justify-center gap-2 transition">
+                                <i data-lucide="eye" class="w-4 h-4"></i> Ler
+                            </a>
+                            <a href="produtos/ferrovias-federais-bahia-1911-1935.pdf" download class="flex-1 px-3 py-2 border border-stone-300 hover:bg-stone-100 text-stone-800 text-sm font-semibold rounded-lg flex items-center justify-center gap-2 transition">
+                                <i data-lucide="download" class="w-4 h-4"></i> Baixar
+                            </a>
                         </div>
                     </div>
                 </div>
